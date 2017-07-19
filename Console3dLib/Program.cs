@@ -10,7 +10,10 @@ namespace Console3dLib
     {
         static void Main(string[] args)
         {
+            
+            //World world = new World();
             Console.ReadKey();
+            
         }
     }
 }

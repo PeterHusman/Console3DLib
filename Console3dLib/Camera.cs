@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Console3dLib
 {
-    class Camera
+    public class Camera
     {
         public Vector3d Position
         {
@@ -18,6 +18,15 @@ namespace Console3dLib
         {
             get;
             set;
+        }
+
+        public float Zoom = 10f;
+
+        public void Render()
+        {
+            
+
+            
         }
     }
 }
