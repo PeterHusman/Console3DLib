@@ -30,13 +30,28 @@ namespace Console3dLib
              );
 
             Matrix c = a * b;
-            Console.WriteLine(a.ToString());
-            Console.WriteLine(b.ToString());
-            Console.WriteLine(c.ToString());
+            MatrixDisplay(a);
+            MatrixDisplay(b);
+            MatrixDisplay(c);
+            Console.Write("\n\n\n");
+            MatrixDisplay(Quaternion.ToRotationMatrix(Quaternion.FromEulerAngles(new Vector3d(90,0,0))));
             Console.ReadKey();
 
 
 
+        }
+
+        private static void MatrixDisplay(Matrix a)
+        {
+            for (int y = 0; y < a.Rows; y++)
+            {
+                for (int x = 0; x < a.Columns; x++)
+                {
+                    Console.Write(a[y, x].ToString() + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
     }
 }

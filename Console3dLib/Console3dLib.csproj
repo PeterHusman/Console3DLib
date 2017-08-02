@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="CoreTypes\Matrix.cs" />
+    <Compile Include="CoreTypes\Quaternion.cs" />
     <Compile Include="CoreTypes\Vector2d.cs" />
     <Compile Include="CoreTypes\Vector4d.cs" />
     <Compile Include="CoreTypes\Vector3d.cs" />

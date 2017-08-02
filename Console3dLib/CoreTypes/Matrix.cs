@@ -8,7 +8,7 @@ namespace Console3dLib.CoreTypes
 {
     class Matrix
     {
-        public float[,] Values = new float[4, 4];
+        public float[,] Values;
         public Matrix IdentityMatrix
         {
             get
@@ -20,6 +20,24 @@ namespace Console3dLib.CoreTypes
             { 0, 0, 0, 1 } });
             }
         }
+
+
+        public int Rows
+        {
+            get
+            {
+                return Values.GetLength(0);
+            }
+        }
+
+        public int Columns
+        {
+            get
+            {
+                return Values.GetLength(1);
+            }
+        }
+
 
         public float this[int m, int n]
         {
@@ -33,20 +51,7 @@ namespace Console3dLib.CoreTypes
             }
         }
 
-        public float[] this[int m]
-        {
-            get
-            {
-                return new float[] { Values[m, 0], Values[m, 1], Values[m, 2], Values[m, 4] };
-            }
-            set
-            {
-                Values[m, 0] = value[0];
-                Values[m, 1] = value[1];
-                Values[m, 2] = value[2];
-                Values[m, 3] = value[3];
-            }
-        }
+        
 
         public Matrix(float[,] values)
         {
@@ -64,8 +69,8 @@ namespace Console3dLib.CoreTypes
 
         private float[,] nestedTo2D(float[][] array)
         {
-            float[,] output = new float[array[0].Length,array.Length];
-            for(int x =0; x< array[0].Length; x++)
+            float[,] output = new float[array[0].Length, array.Length];
+            for (int x = 0; x < array[0].Length; x++)
             {
                 for (int y = 0; y < array.Length; y++)
                 {
@@ -95,32 +100,59 @@ namespace Console3dLib.CoreTypes
             return translationMatrix;
         }
 
-        public Matrix ScalarMatrix(Vector3d scale)
-        {
-            return new Matrix(nestedTo2D(new float[][] { scaleFloatArray(IdentityMatrix[0], scale.X), scaleFloatArray(IdentityMatrix[1], scale.Y), scaleFloatArray(IdentityMatrix[2], scale.Z), IdentityMatrix[3] }));
-        }
+        //public Matrix ScalarMatrix(Vector3d scale)
+        //{
+        //    return new Matrix(nestedTo2D(new float[][] { scaleFloatArray(IdentityMatrix[0], scale.X), scaleFloatArray(IdentityMatrix[1], scale.Y), scaleFloatArray(IdentityMatrix[2], scale.Z), IdentityMatrix[3] }));
+        //}
 
         public static Matrix operator *(Matrix left, Matrix right)
         {
-            float[,] output = new float[right.Values.GetLength(0), left.Values.GetLength(1)];
-            for(int x = 0; x < right.Values.GetLength(0); x++)
+            float[,] output = new float[left.Rows, right.Columns];
+            for (int c = 0; c < right.Columns; c++)
             {
-                for(int y = 0; y < left.Values.GetLength(1); y++)
+                for (int r = 0; r < left.Rows; r++)
                 {
-                    float val = 0.0f;
-                    for(int x2 = 0; x2 < right.Values.GetLength(0); x2++)
-                    {
-                        for (int y2 = 0; y2 < left.Values.GetLength(1); y2++)
-                        {
-                            val += left[x2, y2] * right[y2, x2];
-                        }
-                    }
-                    output[x, y] = val;
+                    output[r, c] = dot(getRowVector(left,r), getColVector(right, c));
                 }
             }
 
             return new Matrix(output);
-            
+
+        }
+
+        private static float[] getRowVector(Matrix a, int row)
+        {
+            float[] output = new float[a.Columns];
+
+            for(int i = 0; i < a.Columns; i++)
+            {
+                output[i] = a[row,i];
+            }
+
+            return output;
+        }
+
+        private static float[] getColVector(Matrix a, int column)
+        {
+            float[] output = new float[a.Rows];
+
+            for (int i = 0; i < a.Rows; i++)
+            {
+                output[i] = a[i, column];
+            }
+
+            return output;
+        }
+
+
+        private static float dot(float[] a, float[] b)
+        {
+            float dotProd = 0f;
+            for(int i = 0; i < a.Length; i++)
+            {
+                dotProd += a[i] * b[i];
+            }
+            return dotProd;
         }
     }
 }
