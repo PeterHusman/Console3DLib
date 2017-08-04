@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes
 {
-    public class Vector2d
+    public class Vector2
     {
         public float X;
         public float Y;
     
-        public Vector2d(float x, float y)
+        public Vector2(float x, float y)
         {
             X = x;
             Y = y;
@@ -20,9 +20,9 @@ namespace Console3dLib.CoreTypes
 
 
 
-        public static Vector2d operator *(Vector2d left, float right)
+        public static Vector2 operator *(Vector2 left, float right)
         {
-            return new Vector2d(left.X * right, left.Y * right);
+            return new Vector2(left.X * right, left.Y * right);
         }
 
     }

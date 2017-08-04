@@ -8,18 +8,18 @@ namespace Console3dLib.CoreTypes
 {
     class Quaternion
     {
-        public Vector4d Values;
+        public Vector4 Values;
 
-        public Quaternion(Vector4d vals)
+        public Quaternion(Vector4 vals)
         {
             Values = vals;
         }
         public Quaternion(float x, float y, float z, float w)
         {
-            Values = new Vector4d(x, y, z, w);
+            Values = new Vector4(x, y, z, w);
         }
 
-        public static Quaternion FromEulerAngles(Vector3d eulerAngles)
+        public static Quaternion FromEulerAngles(Vector3 eulerAngles)
         {
             float t0 = (float)Math.Cos(eulerAngles.Y / 2);
             float t1 = (float)Math.Sin(eulerAngles.Y / 2);
@@ -37,9 +37,9 @@ namespace Console3dLib.CoreTypes
             
         }
 
-        public static Vector3d ToEulerAngles(Quaternion q)
+        public static Vector3 ToEulerAngles(Quaternion q)
         {
-            Vector3d output = new Vector3d(0,0,0);
+            Vector3 output = new Vector3(0,0,0);
 
             float Ysqr = q.Values.Y * q.Values.Y;
 

@@ -11,7 +11,7 @@ namespace Console3dLib
     {
         public Camera MainCamera;
 
-        public RectangularPrism Cube = new RectangularPrism(Vector3d.One*0,Vector3d.One*0,Vector3d.One,ConsoleColor.Red);
+        public RectangularPrism Cube = new RectangularPrism(Vector3.One*0,Vector3.One*0,Vector3.One,ConsoleColor.Red);
         public World()
         {
             

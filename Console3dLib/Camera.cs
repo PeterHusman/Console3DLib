@@ -9,12 +9,12 @@ namespace Console3dLib
 {
     public class Camera
     {
-        public Vector3d Position
+        public Vector3 Position
         {
             get;
             set;
         }
-        public Vector3d Rotation
+        public Vector3 Rotation
         {
             get;
             set;

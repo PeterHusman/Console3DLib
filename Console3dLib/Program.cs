@@ -16,25 +16,23 @@ namespace Console3dLib
             Matrix a = new Matrix(new float[,] {
                 { 1f, 0f, 0f, 10f },
                 { 0f, 1f, 0f, 10f},
-                { 0f, 0f, 1f, 5f},
+                { 0f, 0f, 1f, 10f},
                 { 0f, 0f, 0f, 1f}
             });
 
-            Matrix b = new Matrix(new float[,]
-                {
-                    { 0f },
-                    { 5f },
-                    { 10f },
-                    { 1f }
-                }
-             );
+
+            Matrix scale = Matrix.IdentityMatrix;
+
+            Matrix b = Matrix.FromVector4(new Vector4(10, 0, 0, 1));
+
+            Matrix rot = Quaternion.ToRotationMatrix(Quaternion.FromEulerAngles(new Vector3(0, 90, 0)));
 
             Matrix c = a * b;
             MatrixDisplay(a);
-            MatrixDisplay(b);
-            MatrixDisplay(c);
+            MatrixDisplay(scale);
+            MatrixDisplay(a*(rot*(scale*b)));
             Console.Write("\n\n\n");
-            MatrixDisplay(Quaternion.ToRotationMatrix(Quaternion.FromEulerAngles(new Vector3d(90,0,0))));
+
             Console.ReadKey();
 
 

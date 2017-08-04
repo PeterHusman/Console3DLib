@@ -9,7 +9,7 @@ namespace Console3dLib.CoreTypes
     class Matrix
     {
         public float[,] Values;
-        public Matrix IdentityMatrix
+        public static Matrix IdentityMatrix
         {
             get
             {
@@ -81,16 +81,16 @@ namespace Console3dLib.CoreTypes
         }
 
 
-        public static Matrix operator *(Matrix left, Vector4d right)
-        {
-            return new Matrix(new float[,]{
-                { left[0,0]*right.X, left[0,1]*right.Y, left[0,2]*right.Z, left[0,3]*right.W },
-                { left[1,0]*right.X, left[1,1]*right.Y, left[1,2]*right.Z, left[1,3]*right.W },
-                { left[2,0]*right.X, left[2,1]*right.Y, left[2,2]*right.Z, left[2,3]*right.W },
-                { left[3,0]*right.X, left[3,1]*right.Y, left[3,2]*right.Z, left[3,3]*right.W } });
-        }
+        //public static Matrix operator *(Matrix left, Vector4 right)
+        //{
+        //    return new Matrix(new float[,]{
+        //        { left[0,0]*right.X, left[0,1]*right.Y, left[0,2]*right.Z, left[0,3]*right.W },
+        //        { left[1,0]*right.X, left[1,1]*right.Y, left[1,2]*right.Z, left[1,3]*right.W },
+        //        { left[2,0]*right.X, left[2,1]*right.Y, left[2,2]*right.Z, left[2,3]*right.W },
+        //        { left[3,0]*right.X, left[3,1]*right.Y, left[3,2]*right.Z, left[3,3]*right.W } });
+        //}
 
-        public Matrix TranslationMatrix(Vector4d translation)
+        public static Matrix TranslationMatrix(Vector4 translation)
         {
             Matrix translationMatrix = IdentityMatrix;
             translationMatrix[0, 3] = translation.X;
@@ -100,10 +100,26 @@ namespace Console3dLib.CoreTypes
             return translationMatrix;
         }
 
-        //public Matrix ScalarMatrix(Vector3d scale)
-        //{
-        //    return new Matrix(nestedTo2D(new float[][] { scaleFloatArray(IdentityMatrix[0], scale.X), scaleFloatArray(IdentityMatrix[1], scale.Y), scaleFloatArray(IdentityMatrix[2], scale.Z), IdentityMatrix[3] }));
-        //}
+        public static Matrix ScalarMatrix(Vector4 scalar)
+        {
+            Matrix scalarMatrix = IdentityMatrix;
+            scalarMatrix[0, 0] = scalar.X;
+            scalarMatrix[1, 1] = scalar.Y;
+            scalarMatrix[2, 2] = scalar.Z;
+            scalarMatrix[3, 3] = scalar.W;
+            return scalarMatrix;
+        }
+
+        public static Matrix FromVector4(Vector4 vector)
+        {
+            return new Matrix(new float[4, 1] {
+            { vector.X },
+            { vector.Y },
+            { vector.Z },
+            { vector.W } });
+        }
+
+        
 
         public static Matrix operator *(Matrix left, Matrix right)
         {

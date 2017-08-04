@@ -9,12 +9,12 @@ namespace Console3dLib
 {
     class RectangularPrism
     {
-        public Vector3d Position;
-        public Vector3d Rotation;
-        public Vector3d Size;
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public Vector3 Size;
         public ConsoleColor Color;
 
-        public RectangularPrism(Vector3d position, Vector3d rotation, Vector3d size, ConsoleColor color)
+        public RectangularPrism(Vector3 position, Vector3 rotation, Vector3 size, ConsoleColor color)
         {
             Position = position;
             Rotation = rotation;
