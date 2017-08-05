@@ -18,7 +18,11 @@ namespace Console3dLib.CoreTypes
         {
             Values = new Vector4(x, y, z, w);
         }
-
+        /// <summary>
+        /// Converts to quaternion from euler angles
+        /// </summary>
+        /// <param name="eulerAngles">Euler angles in radians</param>
+        /// <returns></returns>
         public static Quaternion FromEulerAngles(Vector3 eulerAngles)
         {
             float t0 = (float)Math.Cos(eulerAngles.Y / 2);
@@ -37,6 +41,11 @@ namespace Console3dLib.CoreTypes
             
         }
 
+        /// <summary>
+        /// Radians!!!!
+        /// </summary>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public static Vector3 ToEulerAngles(Quaternion q)
         {
             Vector3 output = new Vector3(0,0,0);

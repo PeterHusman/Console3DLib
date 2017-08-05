@@ -119,7 +119,15 @@ namespace Console3dLib.CoreTypes
             { vector.W } });
         }
 
-        
+        public static Matrix FromVector3(Vector3 vector)
+        {
+            return new Matrix(new float[4, 1] {
+            { vector.X },
+            { vector.Y },
+            { vector.Z },
+            { 1 } });
+        }
+
 
         public static Matrix operator *(Matrix left, Matrix right)
         {
