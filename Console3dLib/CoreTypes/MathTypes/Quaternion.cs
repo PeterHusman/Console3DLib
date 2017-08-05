@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes
 {
-    class Quaternion
+    public class Quaternion
     {
         public Vector4 Values;
 

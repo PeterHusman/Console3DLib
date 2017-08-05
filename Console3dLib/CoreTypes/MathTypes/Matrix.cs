@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes
 {
-    class Matrix
+    public class Matrix
     {
         public float[,] Values;
         public static Matrix IdentityMatrix
@@ -142,6 +142,24 @@ namespace Console3dLib.CoreTypes
 
             return new Matrix(output);
 
+        }
+        /// <summary>
+        /// Rounds each value in the specified matrix.
+        /// </summary>
+        /// <param name="mat">The matrix to round</param>
+        /// <param name="place">The power of ten to round to. For example, a place of 0 rounds to the nearest whole number, 1 to the nearest ten, 2 to the nearest hundred, etc. -1 rounds to the nearest tenth, etc.</param>
+        /// <returns></returns>
+        public static Matrix RoundValues(Matrix mat, int place)
+        {
+            for(int x = 0; x < mat.Columns; x++)
+            {
+                for (int y = 0; y < mat.Rows; y++)
+                {
+                    mat.Values[y,x] = (float)Math.Round(mat.Values[y,x], -place);
+                }
+                
+            }
+            return mat;
         }
 
         private static float[] getRowVector(Matrix a, int row)
