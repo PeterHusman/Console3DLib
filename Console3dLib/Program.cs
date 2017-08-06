@@ -37,6 +37,12 @@ namespace Console3dLib
             MatrixDisplay(Matrix.RoundValues(rot*b,-3));
             Console.Write("\n\n\n");
 
+            for(int i = 0; i < 16; i++)
+            {
+                Console.ForegroundColor = (ConsoleColor)i;
+                Console.Write(((ConsoleColor)i).ToString() + "███ ");
+            }
+
             Console.ReadKey();
 
 

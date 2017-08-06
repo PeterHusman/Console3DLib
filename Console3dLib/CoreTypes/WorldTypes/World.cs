@@ -1,4 +1,5 @@
 ﻿using Console3dLib.CoreTypes;
+using Console3dLib.CoreTypes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,11 @@ namespace Console3dLib
     {
         public Camera MainCamera;
 
-        public RectangularPrism Cube = new RectangularPrism(Vector3.One*0,Vector3.One*0,Vector3.One,ConsoleColor.Red);
-        public World()
+        public List<IObject> Objects;
+
+        public World(Camera mainCamera)
         {
-            
+            MainCamera = mainCamera;
         }
         public void Update()
         {
@@ -22,7 +24,7 @@ namespace Console3dLib
         }
         public void Draw()
         {
-            MainCamera.Render();
+            MainCamera.Render(Objects);
         }
     }
 }

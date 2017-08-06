@@ -58,14 +58,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
+    <Compile Include="CoreTypes\DrawingTypes\Color.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Camera.cs" />
     <Compile Include="CoreTypes\MathTypes\ConvertUnits.cs" />
     <Compile Include="CoreTypes\MathTypes\Matrix.cs" />
     <Compile Include="CoreTypes\MathTypes\Quaternion.cs" />
     <Compile Include="CoreTypes\MathTypes\Vector2.cs" />
     <Compile Include="CoreTypes\MathTypes\Vector4.cs" />
     <Compile Include="CoreTypes\MathTypes\Vector3.cs" />
-    <Compile Include="CoreTypes\RenderTypes\IObject.cs" />
+    <Compile Include="CoreTypes\Interfaces\IObject.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Triangle.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Vertex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -73,8 +76,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RectangularPrism.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="CoreTypes\WorldTypes\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

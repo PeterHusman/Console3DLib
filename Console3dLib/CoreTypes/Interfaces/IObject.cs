@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Console3dLib.CoreTypes.RenderTypes
+namespace Console3dLib.CoreTypes.Interfaces
 {
-    interface IObject
+    public interface IObject
     {
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }

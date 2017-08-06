@@ -1,6 +1,6 @@
 ﻿using Console3dLib.CoreTypes;
 using Console3dLib.CoreTypes.MathTypes;
-using Console3dLib.CoreTypes.RenderTypes;
+using Console3dLib.CoreTypes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,11 +57,25 @@ namespace Console3dLib
             ProjectionMatrix[3, 2] = -(2 * nearClippingZ * farClippingZ) / (farClippingZ - nearClippingZ);
         }
 
-
-        public void Render()
+        public void UpdateViewMatrix()
         {
-            
-            
+            Matrix rot = Quaternion.ToRotationMatrix(Rotation);
+            Matrix trans = Matrix.TranslationMatrix(new Vector4(Position.X, Position.Y, Position.Z, 1));
+            Matrix scale = Matrix.IdentityMatrix;
+            ViewMatrix = (trans * (rot * scale));
+        }
+
+        public Camera(float fieldOfViewY, float aspectRatio, float nearClippingZ, float farClippingZ)
+        {
+            UpdateProjection(fieldOfViewY, aspectRatio, nearClippingZ, farClippingZ);
+        }
+
+        public void Render(List<IObject> objsToRender)
+        {
+            foreach (IObject obj in objsToRender)
+            {
+
+            }
         }
     }
 }

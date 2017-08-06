@@ -143,6 +143,19 @@ namespace Console3dLib.CoreTypes
             return new Matrix(output);
 
         }
+
+        public static Matrix operator *(Matrix left, float right)
+        {
+            for(int row = 0; row < left.Rows; row++)
+            {
+                for (int col = 0; col < left.Columns; col++)
+                {
+                    left[row, col] *= right;
+                }
+            }
+            return left;
+        }
+
         /// <summary>
         /// Rounds each value in the specified matrix.
         /// </summary>
