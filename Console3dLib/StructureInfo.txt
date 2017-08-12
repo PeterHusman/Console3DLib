@@ -1,0 +1,14 @@
+IObject : Position and rotation
+IDrawable : Vertices (Can be rendered), Texture? (To do)
+
+
+TODO:
+Collider : Vertices (Can be collided, physics)
+
+
+
+Camera render algorithm:
+-Loop thru objects
+	-Find mvp matrix
+	-Loop thru vertices
+		-Apply mvp

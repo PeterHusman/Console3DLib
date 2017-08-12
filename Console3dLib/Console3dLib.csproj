@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreTypes\DrawingTypes\Color.cs" />
+    <Compile Include="CoreTypes\Interfaces\IDrawable.cs" />
     <Compile Include="CoreTypes\WorldTypes\Camera.cs" />
     <Compile Include="CoreTypes\MathTypes\ConvertUnits.cs" />
     <Compile Include="CoreTypes\MathTypes\Matrix.cs" />
@@ -67,7 +68,7 @@
     <Compile Include="CoreTypes\MathTypes\Vector4.cs" />
     <Compile Include="CoreTypes\MathTypes\Vector3.cs" />
     <Compile Include="CoreTypes\Interfaces\IObject.cs" />
-    <Compile Include="CoreTypes\WorldTypes\Triangle.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Polyhedron.cs" />
     <Compile Include="CoreTypes\WorldTypes\Vertex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

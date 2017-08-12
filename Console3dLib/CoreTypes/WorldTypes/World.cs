@@ -1,5 +1,6 @@
 ﻿using Console3dLib.CoreTypes;
 using Console3dLib.CoreTypes.Interfaces;
+using Console3dLib.CoreTypes.WorldTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Console3dLib
         }
         public void Draw()
         {
-            MainCamera.Render(Objects);
+         //   MainCamera.Render(Objects);
         }
     }
 }

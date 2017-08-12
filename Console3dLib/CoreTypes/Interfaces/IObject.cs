@@ -9,6 +9,7 @@ namespace Console3dLib.CoreTypes.Interfaces
     public interface IObject
     {
         Vector3 Position { get; set; }
+        
         Quaternion Rotation { get; set; }
     }
 }

@@ -40,5 +40,10 @@ namespace Console3dLib.CoreTypes.DrawingTypes
             return leastDistColor;
         }
 
+        public Color(float h, float s, float v)
+        {
+            HSV = new Vector3(h,s,v);
+        }
+
     }
 }

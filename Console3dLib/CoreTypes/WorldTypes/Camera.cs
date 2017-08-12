@@ -2,10 +2,11 @@
 using Console3dLib.CoreTypes.MathTypes;
 using Console3dLib.CoreTypes.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Console3dLib.CoreTypes.WorldTypes;
 
 namespace Console3dLib
 {
@@ -55,12 +56,14 @@ namespace Console3dLib
             ProjectionMatrix[2, 2] = -(farClippingZ + nearClippingZ) / (farClippingZ-nearClippingZ);
             ProjectionMatrix[2, 3] = -1;
             ProjectionMatrix[3, 2] = -(2 * nearClippingZ * farClippingZ) / (farClippingZ - nearClippingZ);
+
+            //ProjectionMatrix[3, 3] = 1;
         }
 
         public void UpdateViewMatrix()
         {
             Matrix rot = Quaternion.ToRotationMatrix(Rotation);
-            Matrix trans = Matrix.TranslationMatrix(new Vector4(Position.X, Position.Y, Position.Z, 1));
+            Matrix trans = Matrix.TranslationMatrix(Position);
             Matrix scale = Matrix.IdentityMatrix;
             ViewMatrix = (trans * (rot * scale));
         }
@@ -70,12 +73,35 @@ namespace Console3dLib
             UpdateProjection(fieldOfViewY, aspectRatio, nearClippingZ, farClippingZ);
         }
 
-        public void Render(List<IObject> objsToRender)
+        public void Render(IDrawable[] objsToRender)
         {
-            foreach (IObject obj in objsToRender)
+            //Temp: store vertices in list, order by descending Z's, draw vertices in order -- NOT FINAL
+            List<Vertex> vertices = new List<Vertex>();
+            for(int i = 0; i < objsToRender.Length; i++)
             {
-
+                Matrix modelMatrix = Matrix.TranslationMatrix(objsToRender[i].Position)*(Quaternion.ToRotationMatrix(objsToRender[i].Rotation)*Matrix.ScalarMatrix(new Vector4(objsToRender[i].Scalar.X, objsToRender[i].Scalar.Y, objsToRender[i].Scalar.Z, 1) ));
+                Matrix mvp = ProjectionMatrix * (ViewMatrix * modelMatrix);
+                for(int v = 0; v < objsToRender[i].Vertices.Length; v++)
+                {
+                    objsToRender[i].Vertices[v].Position = fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Vertices[v].Position));
+                    vertices.Add(objsToRender[i].Vertices[v]);
+                }
             }
+            Vertex[] orderedVerts = vertices.OrderByDescending(z).ToArray();
+            for(int v = 0; v < orderedVerts.Count(); v++)
+            {
+               
+            }
+        }
+
+        private Vector3 fromMatrix(Matrix threeByOne)
+        {
+            return new Vector3(threeByOne[0,0], threeByOne[1,0], threeByOne[2,0]);
+        }
+
+        private float z(Vertex v)
+        {
+            return v.Position.Z;
         }
     }
 }

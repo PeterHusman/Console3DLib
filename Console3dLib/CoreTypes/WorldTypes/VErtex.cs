@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes.WorldTypes
 {
-    public class Vertex : IObject
+    public class Vertex
     {
         public Vector3 Position { get; set; }
-        public Quaternion Rotation { get; set; }
+        //public Quaternion Rotation { get; set; }
     }
 }

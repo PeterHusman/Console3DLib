@@ -90,13 +90,13 @@ namespace Console3dLib.CoreTypes
         //        { left[3,0]*right.X, left[3,1]*right.Y, left[3,2]*right.Z, left[3,3]*right.W } });
         //}
 
-        public static Matrix TranslationMatrix(Vector4 translation)
+        public static Matrix TranslationMatrix(Vector3 translation)
         {
             Matrix translationMatrix = IdentityMatrix;
             translationMatrix[0, 3] = translation.X;
             translationMatrix[1, 3] = translation.Y;
             translationMatrix[2, 3] = translation.Z;
-            translationMatrix[3, 3] = translation.W;
+            translationMatrix[3, 3] = 1;
             return translationMatrix;
         }
 
