@@ -40,6 +40,16 @@ namespace Console3dLib.CoreTypes
         {
             return new Vector3(left.X * right, left.Y * right, left.Z * right);
         }
-        
+
+        public static Vector3 operator +(Vector3 left, Vector3 right)
+        {
+            return new Vector3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
+        }
+
+        public static Vector3 operator -(Vector3 left, Vector3 right)
+        {
+            return left + right * -1f;
+        }
+
     }
 }

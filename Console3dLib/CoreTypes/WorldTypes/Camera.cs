@@ -90,7 +90,17 @@ namespace Console3dLib
             Vertex[] orderedVerts = vertices.OrderByDescending(z).ToArray();
             for(int v = 0; v < orderedVerts.Count(); v++)
             {
-               
+                try
+                {
+
+
+                    Console.SetCursorPosition((int)Math.Round(orderedVerts[v].Position.X + Console.BufferWidth/2), (int)Math.Round(orderedVerts[v].Position.Y+Console.BufferHeight));
+                    Console.Write("█");
+                }
+                catch
+                {
+
+                }
             }
         }
 

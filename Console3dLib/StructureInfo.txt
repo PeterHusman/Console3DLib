@@ -12,3 +12,6 @@ Camera render algorithm:
 	-Find mvp matrix
 	-Loop thru vertices
 		-Apply mvp
+	-Sort by z
+	-Loop thru sorted vertices in order
+		-Draw at x,y
