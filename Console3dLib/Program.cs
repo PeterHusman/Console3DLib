@@ -23,6 +23,8 @@ namespace Console3dLib
         static void Main(string[] args)
         {
 
+            //Normalize rotation matrix!
+
             #region ComponentTests
             /*
             //World world = new World();
