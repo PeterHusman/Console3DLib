@@ -79,12 +79,11 @@ namespace Console3dLib
             List<Vertex> vertices = new List<Vertex>();
             for(int i = 0; i < objsToRender.Length; i++)
             {
-                Matrix modelMatrix = Matrix.TranslationMatrix(objsToRender[i].Position)*(Quaternion.ToRotationMatrix(objsToRender[i].Rotation)*Matrix.ScalarMatrix(new Vector4(objsToRender[i].Scalar.X, objsToRender[i].Scalar.Y, objsToRender[i].Scalar.Z, 1) ));
+                Matrix modelMatrix = Matrix.RoundValues(Matrix.TranslationMatrix(objsToRender[i].Position)*(Quaternion.ToRotationMatrix(objsToRender[i].Rotation)*Matrix.ScalarMatrix(new Vector4(objsToRender[i].Scalar.X, objsToRender[i].Scalar.Y, objsToRender[i].Scalar.Z, 1) )),-1);
                 Matrix mvp = ProjectionMatrix * (ViewMatrix * modelMatrix);
                 for(int v = 0; v < objsToRender[i].Vertices.Length; v++)
                 {
-                    objsToRender[i].Vertices[v].Position = fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Vertices[v].Position));
-                    vertices.Add(objsToRender[i].Vertices[v]);
+                    vertices.Add(new Vertex(fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Vertices[v].Position))));
                 }
             }
             Vertex[] orderedVerts = vertices.OrderByDescending(z).ToArray();
@@ -94,7 +93,7 @@ namespace Console3dLib
                 {
 
 
-                    Console.SetCursorPosition((int)Math.Round(orderedVerts[v].Position.X + Console.BufferWidth/2), (int)Math.Round(orderedVerts[v].Position.Y+Console.BufferHeight));
+                    Console.SetCursorPosition((int)Math.Round(orderedVerts[v].Position.X + Console.BufferWidth/2), (int)Math.Round(orderedVerts[v].Position.Y+Console.BufferHeight/2));
                     Console.Write("█");
                 }
                 catch

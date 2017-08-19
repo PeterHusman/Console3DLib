@@ -62,46 +62,77 @@ namespace Console3dLib
             #endregion
 
 
-            Camera cam = new Camera(60,4/3,0,100);
-            cam.Position = new Vector3(0,0,0);
+            Camera cam = new Camera(60, 4f / 3f, 0.1f, 100);
+            cam.Position = new Vector3(0, 0, 0);
             cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
             cam.UpdateViewMatrix();
             TestObj[] obj = new TestObj[1];
             obj[0] = new TestObj();
             obj[0].Position = new Vector3(0, 0, 0);
-            obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0,0,0));
+            obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
             obj[0].Scalar = Vector3.One;
-            obj[0].Vertices = new Vertex[] { new Vertex(10,0,10), new Vertex(20,0,0), new Vertex(0,10,10) };
+            obj[0].Vertices = new Vertex[] { new Vertex(1, 0, 1), new Vertex(2, 0, 0), new Vertex(-1, 0, -1) };
 
-            
 
-            while(true)
+
+            while (true)
             {
-                if(Console.KeyAvailable)
+                if (Console.KeyAvailable)
                 {
-                    char c = Console.ReadKey(true).KeyChar;
-                    if(c == 'w')
+                    ConsoleKey c = Console.ReadKey(true).Key;
+                    if (c == ConsoleKey.W)
                     {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(10, 0, 0)).Values);
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3((float)Math.PI / 8f, 0, 0)).Values);
                     }
-                    if (c == 'a')
+                    if (c == ConsoleKey.A)
                     {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 10, 0)).Values);
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
                     }
-                    if (c == 's')
+                    if (c == ConsoleKey.S)
                     {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(-10, 0, 0)).Values);
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(-(float)Math.PI / 8f, 0, 0)).Values);
                     }
-                    if (c == 'd')
+                    if (c == ConsoleKey.D)
                     {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -10, 0)).Values);
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
                     }
-                }
-                //Console.Clear();
-                cam.Render(obj);
-            }
+                    if(c == ConsoleKey.RightArrow)
+                    {
+                        cam.Position += Vector3.Forward;
+                    }
+                    if (c == ConsoleKey.LeftArrow)
+                    {
+                        cam.Position -= Vector3.Forward;
+                    }
+                    if (c == ConsoleKey.UpArrow)
+                    {
+                        cam.Position += Vector3.Side;
+                    }
+                    if (c == ConsoleKey.DownArrow)
+                    {
+                        cam.Position -= Vector3.Side;
+                    }
+                    if (c == ConsoleKey.NumPad3)
+                    {
+                        cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
+                    }
+                    if (c == ConsoleKey.NumPad1)
+                    {
+                        cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
+                    }
 
-            Console.ReadKey();
+                    cam.UpdateViewMatrix();
+                }
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                        
+                }
+
+                Console.Clear();
+                cam.Render(obj);
+                System.Threading.Thread.Sleep(100);
+            }
 
 
 

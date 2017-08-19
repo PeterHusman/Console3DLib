@@ -10,3 +10,4 @@ C:\Users\PeterHusman\Documents\GitHub\Console3DLib\Console3dLib\bin\Debug\Consol
 C:\Users\PeterHusman\Documents\GitHub\Console3DLib\Console3dLib\obj\Debug\Console3dLib.csprojResolveAssemblyReference.cache
 C:\Users\PeterHusman\Documents\GitHub\Console3DLib\Console3dLib\obj\Debug\Console3dLib.exe
 C:\Users\PeterHusman\Documents\GitHub\Console3DLib\Console3dLib\obj\Debug\Console3dLib.pdb
+C:\Users\Peter Husman\Documents\GitHub\Console3DLib\Console3dLib\obj\Debug\Console3dLib.csproj.CoreCompileInputs.cache
