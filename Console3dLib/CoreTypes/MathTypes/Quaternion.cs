@@ -41,6 +41,12 @@ namespace Console3dLib.CoreTypes
             
         }
 
+        public static Quaternion Normalize(Quaternion q)
+        {
+            float n = (float)Math.Sqrt(q.Values.X* q.Values.X + q.Values.Y * q.Values.Y + q.Values.Z * q.Values.Z + q.Values.W * q.Values.W);
+            return new Quaternion(q.Values.X/n, q.Values.Y / n, q.Values.Z / n, q.Values.W / n);
+        }
+
         /// <summary>
         /// Radians!!!!
         /// </summary>
@@ -68,8 +74,10 @@ namespace Console3dLib.CoreTypes
             return output;
         }
 
-        public static Matrix ToRotationMatrix(Quaternion q)
+        public static Matrix ToRotationMatrix(Quaternion quaternion)
         {
+            Quaternion q = Quaternion.Normalize(quaternion);
+
             Matrix a = new Matrix(new float[4, 4] {
             { q.Values.W, q.Values.Z, -q.Values.Y, q.Values.X },
             { -q.Values.Z, q.Values.W, q.Values.X, q.Values.Y },

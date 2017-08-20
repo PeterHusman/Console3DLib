@@ -64,16 +64,16 @@ namespace Console3dLib
             #endregion
 
 
-            Camera cam = new Camera(60, 4f / 3f, 0.1f, 100);
-            cam.Position = new Vector3(0, 0, 0);
+            Camera cam = new Camera(90, 1920f / 1080f, 0.01f, 100);
+            cam.Position = new Vector3(0, 0, -1f);
             cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
             cam.UpdateViewMatrix();
             TestObj[] obj = new TestObj[1];
             obj[0] = new TestObj();
             obj[0].Position = new Vector3(0, 0, 0);
             obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
-            obj[0].Scalar = Vector3.One;
-            obj[0].Vertices = new Vertex[] { new Vertex(1, 0, 1), new Vertex(2, 0, 0), new Vertex(-1, 0, -1) };
+            obj[0].Scalar = Vector3.One*1000;
+            obj[0].Vertices = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f,-0.1f,0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
 
 
 
@@ -98,7 +98,15 @@ namespace Console3dLib
                     {
                         obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
                     }
-                    if(c == ConsoleKey.RightArrow)
+                    if (c == ConsoleKey.R)
+                    {
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0,0,-(float)Math.PI / 8f)).Values);
+                    }
+                    if (c == ConsoleKey.F)
+                    {
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, (float)Math.PI / 8f)).Values);
+                    }
+                    if (c == ConsoleKey.RightArrow)
                     {
                         cam.Position += Vector3.Forward;
                     }
@@ -121,6 +129,22 @@ namespace Console3dLib
                     if (c == ConsoleKey.NumPad1)
                     {
                         cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
+                    }
+                    if(c == ConsoleKey.NumPad4)
+                    {
+                        cam.Position += new Vector3(1f,0,0);
+                    }
+                    if (c == ConsoleKey.NumPad6)
+                    {
+                        cam.Position -= new Vector3(1f, 0, 0);
+                    }
+                    if (c == ConsoleKey.NumPad8)
+                    {
+                        cam.Position += new Vector3(0f, 1, 0);
+                    }
+                    if (c == ConsoleKey.NumPad5)
+                    {
+                        cam.Position -= new Vector3(0, 1, 0);
                     }
 
                     cam.UpdateViewMatrix();
