@@ -1,4 +1,5 @@
 ﻿using Console3dLib.CoreTypes;
+using Console3dLib.CoreTypes.DrawingTypes;
 using Console3dLib.CoreTypes.Interfaces;
 using Console3dLib.CoreTypes.WorldTypes;
 using System;
@@ -63,8 +64,24 @@ namespace Console3dLib
             */
             #endregion
 
+            //Texture t = new Texture();
+            //t.LoadFromFile(@"C:\Users\Peter Husman\Documents\GitHub\Console3DLib\Console3dLib\TestTexture.png");
+            //;
 
-            Camera cam = new Camera(90, 1920f / 1080f, 0.01f, 100);
+            //for (int y = 0; y < t.Height; y++)
+            //{
+            //    for (int x = 0; x < Console.BufferWidth; x++)
+            //    {
+            //        Console.BackgroundColor = t[x, y].NearestConsoleColor();
+            //        Console.Write(" ");
+            //    }
+            //    Console.Write("/n");
+            //}
+
+
+            //Console.ReadKey();
+
+            Camera cam = new Camera(90, 1080f / 1920f, 0.01f, 100);
             cam.Position = new Vector3(0, 0, -1f);
             cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
             cam.UpdateViewMatrix();
@@ -72,8 +89,8 @@ namespace Console3dLib
             obj[0] = new TestObj();
             obj[0].Position = new Vector3(0, 0, 0);
             obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
-            obj[0].Scalar = Vector3.One*1000;
-            obj[0].Vertices = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f,-0.1f,0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
+            obj[0].Scalar = Vector3.One * 1000;
+            obj[0].Vertices = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
 
 
 
@@ -100,7 +117,7 @@ namespace Console3dLib
                     }
                     if (c == ConsoleKey.R)
                     {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0,0,-(float)Math.PI / 8f)).Values);
+                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, -(float)Math.PI / 8f)).Values);
                     }
                     if (c == ConsoleKey.F)
                     {
@@ -130,9 +147,9 @@ namespace Console3dLib
                     {
                         cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
                     }
-                    if(c == ConsoleKey.NumPad4)
+                    if (c == ConsoleKey.NumPad4)
                     {
-                        cam.Position += new Vector3(1f,0,0);
+                        cam.Position += new Vector3(1f, 0, 0);
                     }
                     if (c == ConsoleKey.NumPad6)
                     {
@@ -152,7 +169,7 @@ namespace Console3dLib
                 while (Console.KeyAvailable)
                 {
                     Console.ReadKey(true);
-                        
+
                 }
 
                 Console.Clear();

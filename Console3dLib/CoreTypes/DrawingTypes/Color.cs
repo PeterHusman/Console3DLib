@@ -16,10 +16,11 @@ namespace Console3dLib.CoreTypes.DrawingTypes
 
         public Vector3 HSV;
 
-        //public static Vector3 FromRGB(Vector3 rgb)
-        //{
-        //    return
-        //}
+        public static Color FromRGB(Vector3 rgb)
+        {
+            System.Drawing.Color systemColor = System.Drawing.Color.FromArgb((int)rgb.X,(int)rgb.Y,(int)rgb.Z);
+            return new Color(systemColor.GetHue(),systemColor.GetSaturation(),systemColor.GetBrightness() * 240);
+        }
 
         public ConsoleColor NearestConsoleColor()
         {
