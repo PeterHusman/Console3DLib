@@ -23,8 +23,7 @@ namespace Console3dLib
     {
         static void Main(string[] args)
         {
-
-            //Normalize rotation matrix!
+            
 
             #region ComponentTests
             /*
@@ -64,119 +63,130 @@ namespace Console3dLib
             */
             #endregion
 
-            //Texture t = new Texture();
-            //t.LoadFromFile(@"C:\Users\Peter Husman\Documents\GitHub\Console3DLib\Console3dLib\TestTexture.png");
-            //;
-
-            //for (int y = 0; y < t.Height; y++)
-            //{
-            //    for (int x = 0; x < Console.BufferWidth; x++)
-            //    {
-            //        Console.BackgroundColor = t[x, y].NearestConsoleColor();
-            //        Console.Write(" ");
-            //    }
-            //    Console.Write("/n");
-            //}
-
-
-            //Console.ReadKey();
-
-            Camera cam = new Camera(90, 1080f / 1920f, 0.01f, 100);
-            cam.Position = new Vector3(0, 0, -1f);
-            cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
-            cam.UpdateViewMatrix();
-            TestObj[] obj = new TestObj[1];
-            obj[0] = new TestObj();
-            obj[0].Position = new Vector3(0, 0, 0);
-            obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
-            obj[0].Scalar = Vector3.One * 1000;
-            obj[0].Vertices = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
-
-
-
-            while (true)
+            while(!Console.KeyAvailable)
             {
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKey c = Console.ReadKey(true).Key;
-                    if (c == ConsoleKey.W)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3((float)Math.PI / 8f, 0, 0)).Values);
-                    }
-                    if (c == ConsoleKey.A)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
-                    }
-                    if (c == ConsoleKey.S)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(-(float)Math.PI / 8f, 0, 0)).Values);
-                    }
-                    if (c == ConsoleKey.D)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
-                    }
-                    if (c == ConsoleKey.R)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, -(float)Math.PI / 8f)).Values);
-                    }
-                    if (c == ConsoleKey.F)
-                    {
-                        obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, (float)Math.PI / 8f)).Values);
-                    }
-                    if (c == ConsoleKey.RightArrow)
-                    {
-                        cam.Position += Vector3.Forward;
-                    }
-                    if (c == ConsoleKey.LeftArrow)
-                    {
-                        cam.Position -= Vector3.Forward;
-                    }
-                    if (c == ConsoleKey.UpArrow)
-                    {
-                        cam.Position += Vector3.Side;
-                    }
-                    if (c == ConsoleKey.DownArrow)
-                    {
-                        cam.Position -= Vector3.Side;
-                    }
-                    if (c == ConsoleKey.NumPad3)
-                    {
-                        cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
-                    }
-                    if (c == ConsoleKey.NumPad1)
-                    {
-                        cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
-                    }
-                    if (c == ConsoleKey.NumPad4)
-                    {
-                        cam.Position += new Vector3(1f, 0, 0);
-                    }
-                    if (c == ConsoleKey.NumPad6)
-                    {
-                        cam.Position -= new Vector3(1f, 0, 0);
-                    }
-                    if (c == ConsoleKey.NumPad8)
-                    {
-                        cam.Position += new Vector3(0f, 1, 0);
-                    }
-                    if (c == ConsoleKey.NumPad5)
-                    {
-                        cam.Position -= new Vector3(0, 1, 0);
-                    }
 
-                    cam.UpdateViewMatrix();
-                }
-                while (Console.KeyAvailable)
-                {
-                    Console.ReadKey(true);
-
-                }
-
-                Console.Clear();
-                cam.Render(obj);
-                System.Threading.Thread.Sleep(100);
             }
+            if (Console.ReadKey(true).KeyChar == 't')
+            {
+                Texture t = new Texture();
+                t.LoadFromFile(@"C:\Users\Peter Husman\Documents\GitHub\Console3DLib\Console3dLib\TestTexture.png");
+                ;
 
+                for (int y = 0; y < t.Height; y++)
+                {
+                    for (int x = 0; x < Console.BufferWidth; x++)
+                    {
+                        Console.BackgroundColor = t[x, y].NearestConsoleColor();
+                        Console.Write(" ");
+                    }
+                    Console.Write("/n");
+                }
+
+                while (true)
+                {
+
+                }
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Camera cam = new Camera(90, 1080f / 1920f, 0.01f, 100);
+                cam.Position = new Vector3(0, 0, -1f);
+                cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
+                cam.UpdateViewMatrix();
+                TestObj[] obj = new TestObj[1];
+                obj[0] = new TestObj();
+                obj[0].Position = new Vector3(0, 0, 0);
+                obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
+                obj[0].Scalar = Vector3.One * 1000;
+                obj[0].Vertices = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
+
+
+
+                while (true)
+                {
+                    if (Console.KeyAvailable)
+                    {
+                        ConsoleKey c = Console.ReadKey(true).Key;
+                        if (c == ConsoleKey.W)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3((float)Math.PI / 8f, 0, 0)).Values);
+                        }
+                        if (c == ConsoleKey.A)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
+                        }
+                        if (c == ConsoleKey.S)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(-(float)Math.PI / 8f, 0, 0)).Values);
+                        }
+                        if (c == ConsoleKey.D)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
+                        }
+                        if (c == ConsoleKey.R)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, -(float)Math.PI / 8f)).Values);
+                        }
+                        if (c == ConsoleKey.F)
+                        {
+                            obj[0].Rotation = new Quaternion(obj[0].Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, 0, (float)Math.PI / 8f)).Values);
+                        }
+                        if (c == ConsoleKey.RightArrow)
+                        {
+                            cam.Position += Vector3.Forward;
+                        }
+                        if (c == ConsoleKey.LeftArrow)
+                        {
+                            cam.Position -= Vector3.Forward;
+                        }
+                        if (c == ConsoleKey.UpArrow)
+                        {
+                            cam.Position += Vector3.Side;
+                        }
+                        if (c == ConsoleKey.DownArrow)
+                        {
+                            cam.Position -= Vector3.Side;
+                        }
+                        if (c == ConsoleKey.NumPad3)
+                        {
+                            cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, -(float)Math.PI / 8f, 0)).Values);
+                        }
+                        if (c == ConsoleKey.NumPad1)
+                        {
+                            cam.Rotation = new Quaternion(cam.Rotation.Values + Quaternion.FromEulerAngles(new Vector3(0, (float)Math.PI / 8f, 0)).Values);
+                        }
+                        if (c == ConsoleKey.NumPad4)
+                        {
+                            cam.Position += new Vector3(1f, 0, 0);
+                        }
+                        if (c == ConsoleKey.NumPad6)
+                        {
+                            cam.Position -= new Vector3(1f, 0, 0);
+                        }
+                        if (c == ConsoleKey.NumPad8)
+                        {
+                            cam.Position += new Vector3(0f, 1, 0);
+                        }
+                        if (c == ConsoleKey.NumPad5)
+                        {
+                            cam.Position -= new Vector3(0, 1, 0);
+                        }
+
+                        cam.UpdateViewMatrix();
+                    }
+                    while (Console.KeyAvailable)
+                    {
+                        Console.ReadKey(true);
+
+                    }
+
+                    Console.Clear();
+                    cam.Render(obj);
+                    System.Threading.Thread.Sleep(100);
+                }
+            }
 
 
         }

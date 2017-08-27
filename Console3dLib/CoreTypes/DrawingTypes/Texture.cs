@@ -37,7 +37,7 @@ namespace Console3dLib.CoreTypes.DrawingTypes
             }
         }
 
-        public int Width { get { return pixels.GetLength(0); } }
-        public int Height { get { return pixels.GetLength(1); } }
+        public int Width { get { return pixels.GetLength(1); } }
+        public int Height { get { return pixels.GetLength(0); } }
     }
 }

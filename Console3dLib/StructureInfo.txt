@@ -16,5 +16,5 @@ Camera render algorithm:
 	-Loop thru sorted vertices in order
 		-Draw at x,y
 
-Test each point to see if it is inside polygon. Do this using the ray casting algorithm. Check ray-segment collisions.
+Test each point to see if it is inside polygon. Use ray casting algorithm or winding number algorithm. Check ray-segment collisions.
 If inside polygon, access texture at that point and draw proper color
