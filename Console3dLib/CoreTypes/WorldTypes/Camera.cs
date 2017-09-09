@@ -81,9 +81,12 @@ namespace Console3dLib
             {
                 Matrix modelMatrix = Matrix.RoundValues(Matrix.TranslationMatrix(objsToRender[i].Position)*(Quaternion.ToRotationMatrix(objsToRender[i].Rotation)*Matrix.ScalarMatrix(new Vector4(objsToRender[i].Scalar.X, objsToRender[i].Scalar.Y, objsToRender[i].Scalar.Z, 1) )),-1);
                 Matrix mvp = ProjectionMatrix * (ViewMatrix * modelMatrix);
-                for(int v = 0; v < objsToRender[i].Vertices.Length; v++)
+                for (int p = 0; p < objsToRender[i].Polygons.Length; p++)
                 {
-                    vertices.Add(new Vertex(fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Vertices[v].Position))));
+                    for (int v = 0; v < objsToRender[i].Polygons[p].Vertices.Length; v++)
+                    {
+                        vertices.Add(new Vertex(fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Polygons[p].Vertices[v].Position))));
+                    }
                 }
             }
             Vertex[] orderedVerts = vertices.OrderByDescending(z).ToArray();

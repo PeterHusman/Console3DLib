@@ -1,4 +1,5 @@
-﻿using Console3dLib.CoreTypes.WorldTypes;
+﻿using Console3dLib.CoreTypes.DrawingTypes;
+using Console3dLib.CoreTypes.WorldTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,12 @@ namespace Console3dLib.CoreTypes.Interfaces
 {
     public interface IDrawable : IObject
     {
-        Vertex[] Vertices { get; set; }
+        Polygon[] Polygons { get; set; }
         Vector3 Scalar { get; set; }
-        //Texture
+        Texture UVTexture { get; set; }
+        /// <summary>
+        /// Maps the polygon index to the position and size of the texture. (x, y, width, height)
+        /// </summary>
+        Dictionary<int, Vector4> UVMapping { get; set; }
     }
 }

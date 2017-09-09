@@ -72,6 +72,7 @@
     <Compile Include="CoreTypes\MathTypes\Vector4.cs" />
     <Compile Include="CoreTypes\MathTypes\Vector3.cs" />
     <Compile Include="CoreTypes\Interfaces\IObject.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Polygon.cs" />
     <Compile Include="CoreTypes\WorldTypes\Polyhedron.cs" />
     <Compile Include="CoreTypes\WorldTypes\Vertex.cs" />
     <Compile Include="Program.cs" />

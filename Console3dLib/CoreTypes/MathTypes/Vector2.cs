@@ -18,6 +18,7 @@ namespace Console3dLib.CoreTypes
            
         }
 
+        public float Length { get { return (float)Math.Sqrt(X * X + Y*Y); } }
 
 
         public static Vector2 operator *(Vector2 left, float right)
