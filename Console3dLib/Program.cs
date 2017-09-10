@@ -16,6 +16,8 @@ namespace Console3dLib
         public Quaternion Rotation { get; set; }
         public Vector3 Scalar { get; set; }
         public Polygon[] Polygons { get; set; }
+        public Dictionary<int,Vector4> UVMapping { get; set; }
+        public Texture UVTexture { get; set; }
 
     }
 
@@ -100,7 +102,7 @@ namespace Console3dLib
                 obj[0].Position = new Vector3(0, 0, 0);
                 obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
                 obj[0].Scalar = Vector3.One * 1000;
-                obj[0].Polygons = new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) };
+                obj[0].Polygons = new Polygon[] { new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) }) };
 
 
 

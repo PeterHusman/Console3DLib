@@ -76,34 +76,48 @@ namespace Console3dLib
         public void Render(IDrawable[] objsToRender)
         {
             //Temp: store vertices in list, order by descending Z's, draw vertices in order -- NOT FINAL
-            List<Vertex> vertices = new List<Vertex>();
+            List<Polygon> polygons = new List<Polygon>();
             for(int i = 0; i < objsToRender.Length; i++)
             {
                 Matrix modelMatrix = Matrix.RoundValues(Matrix.TranslationMatrix(objsToRender[i].Position)*(Quaternion.ToRotationMatrix(objsToRender[i].Rotation)*Matrix.ScalarMatrix(new Vector4(objsToRender[i].Scalar.X, objsToRender[i].Scalar.Y, objsToRender[i].Scalar.Z, 1) )),-1);
                 Matrix mvp = ProjectionMatrix * (ViewMatrix * modelMatrix);
                 for (int p = 0; p < objsToRender[i].Polygons.Length; p++)
                 {
+                    List<Vertex> vertices = new List<Vertex>();
                     for (int v = 0; v < objsToRender[i].Polygons[p].Vertices.Length; v++)
                     {
                         vertices.Add(new Vertex(fromMatrix(mvp * Matrix.FromVector3(objsToRender[i].Polygons[p].Vertices[v].Position))));
                     }
+                    polygons.Add(new Polygon(vertices.ToArray()));
                 }
             }
-            Vertex[] orderedVerts = vertices.OrderByDescending(z).ToArray();
-            for(int v = 0; v < orderedVerts.Count(); v++)
+            IOrderedEnumerable<Polygon> orderPolys = polygons.OrderByDescending(z);
+            StringBuilder screenOutput = new StringBuilder();
+            for (int y = 0; y < Console.BufferHeight; y++)
             {
-                try
+                Console.Out.Flush();
+                ;
+
+                for (int x = 0; x < Console.BufferWidth; x++)
                 {
-
-
-                    Console.SetCursorPosition((int)Math.Round(orderedVerts[v].Position.X + Console.BufferWidth/2), (int)Math.Round(orderedVerts[v].Position.Y+Console.BufferHeight/2));
-                    Console.Write("█");
+                    Console.Write('█');
+                    for (int i = 0; i < orderPolys.Count(); i++)
+                    {
+                        
+                        if (!orderPolys.ElementAt(i).PointInside2DXY(new Vector2(x,Console.BufferHeight-y)))
+                        {
+                            //Console.ForegroundColor = ConsoleColor.White;
+                            screenOutput.Append('█');
+                        }
+                        else
+                        {
+                            screenOutput.Append('█');
+                        }
+                    }
                 }
-                catch
-                {
-
-                }
+                //screenOutput.Append('\n');
             }
+            //Console.Write(screenOutput.ToString());
         }
 
         private Vector3 fromMatrix(Matrix threeByOne)
@@ -111,9 +125,17 @@ namespace Console3dLib
             return new Vector3(threeByOne[0,0], threeByOne[1,0], threeByOne[2,0]);
         }
 
-        private float z(Vertex v)
+        private float z(Polygon p)
         {
-            return v.Position.Z;
+            float z = float.MaxValue;
+            foreach(Vertex v in p.Vertices)
+            {
+                if(v.Position.Z <= z)
+                {
+                    z = v.Position.Z;
+                }
+            }
+            return z;
         }
     }
 }

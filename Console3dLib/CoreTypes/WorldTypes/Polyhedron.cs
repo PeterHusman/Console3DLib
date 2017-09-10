@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes.WorldTypes
 {
-    public class Polyhedron : IDrawable
+    public class Polyhedron// : IDrawable
     {
         /// <summary>
         /// Vertices of the polyhedron, relative to the object's position.
