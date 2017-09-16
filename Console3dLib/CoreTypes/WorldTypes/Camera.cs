@@ -95,25 +95,20 @@ namespace Console3dLib
             StringBuilder screenOutput = new StringBuilder();
             for (int y = 0; y < Console.BufferHeight; y++)
             {
-                Console.Out.Flush();
-                ;
-
                 for (int x = 0; x < Console.BufferWidth; x++)
                 {
-                    Console.Write('█');
+
+                    ConsoleColor pixelColor = ConsoleColor.Black;
                     for (int i = 0; i < orderPolys.Count(); i++)
                     {
-                        
-                        if (!orderPolys.ElementAt(i).PointInside2DXY(new Vector2(x,Console.BufferHeight-y)))
+
+                        if (orderPolys.ElementAt(i).PointInside2DXY(new Vector2(x-Console.BufferWidth/2, Console.BufferHeight - (y+Console.BufferHeight/2))))
                         {
-                            //Console.ForegroundColor = ConsoleColor.White;
-                            screenOutput.Append('█');
-                        }
-                        else
-                        {
-                            screenOutput.Append('█');
+                            pixelColor = ConsoleColor.White;
                         }
                     }
+                    Console.BackgroundColor = pixelColor;
+                    Console.Write(' ');
                 }
                 //screenOutput.Append('\n');
             }

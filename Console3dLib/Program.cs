@@ -93,7 +93,7 @@ namespace Console3dLib
             else
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                Camera cam = new Camera(90, 1080f / 1920f, 0.01f, 100);
+                Camera cam = new Camera(90, 1080f / 1920f /** 2f/5f*/, 0.01f, 100);
                 cam.Position = new Vector3(0, 0, -1f);
                 cam.Rotation = Quaternion.FromEulerAngles(Vector3.One * 0);
                 cam.UpdateViewMatrix();
@@ -102,7 +102,7 @@ namespace Console3dLib
                 obj[0].Position = new Vector3(0, 0, 0);
                 obj[0].Rotation = Quaternion.FromEulerAngles(new Vector3(0, 0, 0));
                 obj[0].Scalar = Vector3.One * 1000;
-                obj[0].Polygons = new Polygon[] { new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f) }) };
+                obj[0].Polygons = new Polygon[] { new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, 0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(-0.1f, 0.1f, 0.1f), new Vertex(0.1f, 0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(0.1f, 0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(0.1f, -0.1f, 0.1f), new Vertex(0.1f, 0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(-0.1f, 0.1f, -0.1f) }), new Polygon(new Vertex[] { new Vertex(0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f), new Vertex(-0.1f, -0.1f, 0.1f), new Vertex(0.1f, -0.1f, 0.1f) }), new Polygon(new Vertex[] { new Vertex(-0.1f, 0.1f, -0.1f), new Vertex(-0.1f, -0.1f, -0.1f), new Vertex(0.1f, -0.1f, -0.1f), new Vertex(0.1f, 0.1f, -0.1f) }) };
 
 
 
