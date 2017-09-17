@@ -10,7 +10,7 @@ namespace Console3dLib.CoreTypes.Interfaces
 {
     public interface IDrawable : IObject
     {
-        Polygon[] Polygons { get; set; }
+        Triangle[] Triangles { get; set; }
         Vector3 Scalar { get; set; }
         Texture UVTexture { get; set; }
         /// <summary>

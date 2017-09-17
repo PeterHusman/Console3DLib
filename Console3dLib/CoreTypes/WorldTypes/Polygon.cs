@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Console3dLib.CoreTypes.WorldTypes
 {
+    [Obsolete("Use Triangles instead")]
     public class Polygon
     {
         public Vertex[] Vertices { get; set; }

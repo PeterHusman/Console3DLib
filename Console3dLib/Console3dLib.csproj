@@ -74,6 +74,7 @@
     <Compile Include="CoreTypes\Interfaces\IObject.cs" />
     <Compile Include="CoreTypes\WorldTypes\Polygon.cs" />
     <Compile Include="CoreTypes\WorldTypes\Polyhedron.cs" />
+    <Compile Include="CoreTypes\WorldTypes\Triangle.cs" />
     <Compile Include="CoreTypes\WorldTypes\Vertex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
